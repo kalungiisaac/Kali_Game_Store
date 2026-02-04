@@ -1,0 +1,70 @@
+{
+  "api": {
+    "rawg": {
+      "baseUrl": "https://api.rawg.io/api",
+      "rateLimit": {
+        "maxRequests": 40,
+        "perMinute": 60000
+      }
+    },
+    "cheapshark": {
+      "baseUrl": "https://www.cheapshark.com/api/1.0",
+      "rateLimit": null
+    },
+    "freetogame": {
+      "baseUrl": "https://www.freetogame.com/api",
+      "rateLimit": null
+    },
+    "igdb": {
+      "proxyUrl": "http://localhost:3001/igdb"
+    }
+  },
+  "app": {
+    "name": "Game Store Library",
+    "version": "1.0.0",
+    "defaultPageSize": 20,
+    "maxComparisonSlots": 3,
+    "cacheTimeout": 300000
+  },
+  "ui": {
+    "theme": "dark",
+    "colors": {
+      "primary": "#1F4E78",
+      "secondary": "#FF6B35",
+      "background": "#F5F5F5",
+      "text": "#333333"
+    },
+    "defaultOrdering": "-rating"
+  },
+  "filters": {
+    "platforms": [
+      { "id": 4, "name": "PC", "slug": "pc" },
+      { "id": 187, "name": "PlayStation 5", "slug": "playstation5" },
+      { "id": 18, "name": "PlayStation 4", "slug": "playstation4" },
+      { "id": 1, "name": "Xbox One", "slug": "xbox-one" },
+      { "id": 186, "name": "Xbox Series S/X", "slug": "xbox-series-x" },
+      { "id": 7, "name": "Nintendo Switch", "slug": "nintendo-switch" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action", "slug": "action" },
+      { "id": 51, "name": "Indie", "slug": "indie" },
+      { "id": 3, "name": "Adventure", "slug": "adventure" },
+      { "id": 5, "name": "RPG", "slug": "role-playing-games-rpg" },
+      { "id": 10, "name": "Strategy", "slug": "strategy" },
+      { "id": 2, "name": "Shooter", "slug": "shooter" },
+      { "id": 40, "name": "Casual", "slug": "casual" },
+      { "id": 14, "name": "Simulation", "slug": "simulation" },
+      { "id": 7, "name": "Puzzle", "slug": "puzzle" },
+      { "id": 11, "name": "Arcade", "slug": "arcade" }
+    ],
+    "ordering": [
+      { "value": "-rating", "label": "Top Rated" },
+      { "value": "rating", "label": "Lowest Rated" },
+      { "value": "-released", "label": "Newest First" },
+      { "value": "released", "label": "Oldest First" },
+      { "value": "name", "label": "A-Z" },
+      { "value": "-name", "label": "Z-A" },
+      { "value": "-metacritic", "label": "Metacritic Score" }
+    ]
+  }
+}

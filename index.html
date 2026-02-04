@@ -1,61 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <!-- Primary Meta Tags -->
-    <title>WDD330 - Web Frontend Development II</title>
-    <meta name="description" content="WDD330 course website for Web Frontend Development II. Learn modern web development techniques and best practices.">
-    <meta name="keywords" content="web development, frontend, JavaScript, HTML, CSS, WDD330, BYU-Idaho">
-    <meta name="author" content="Your Name">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://example.com/wdd330/">
-    <meta property="og:title" content="WDD330 - Web Frontend Development II">
-    <meta property="og:description" content="WDD330 course website for Web Frontend Development II. Learn modern web development techniques and best practices.">
-    <meta property="og:image" content="https://example.com/wdd330/images/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="WDD330 Course Preview">
-    <meta property="og:site_name" content="WDD330 Course">
-    <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://example.com/wdd330/">
-    <meta name="twitter:title" content="WDD330 - Web Frontend Development II">
-    <meta name="twitter:description" content="WDD330 course website for Web Frontend Development II. Learn modern web development techniques and best practices.">
-    <meta name="twitter:image" content="https://example.com/wdd330/images/twitter-image.jpg">
-    <meta name="twitter:creator" content="@yourtwitterhandle">
-    
-    <!-- Additional Meta Tags -->
-    <meta name="theme-color" content="#ffffff">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    
-    <!-- Favicon Links (placeholder) -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://example.com/wdd330/">
-    
-  
+    <title>Game Store Library - Browse Games</title>
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
 </head>
-<body>
-    
+<body id="index-page">
+    <!-- Dynamic header will be inserted here -->
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <!-- Featured Game Banner -->
+        <section class="featured-game" id="featured-game">
+            <div class="featured-bg" id="featured-bg"></div>
+            <div class="featured-overlay"></div>
+            <div class="featured-content">
+                <h2>FEATURED GAME: <span id="featured-title">[Game Title]</span></h2>
+                <p id="featured-platforms">Available Now on PC, PS5, Xbox</p>
+                <div class="featured-buttons">
+                    <a href="#" id="featured-link" class="btn">LEARN MORE</a>
+                    <button class="btn btn-trailer" id="featured-trailer">▶ WATCH TRAILER</button>
+                    <button class="btn btn-secondary" id="featured-download">DOWNLOAD</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <!-- Sidebar Filters -->
+            <aside class="filter-panel">
+                <h3>CATEGORIES</h3>
+                <div class="filter-group">
+                    <h4>PLATFORMS</h4>
+                    <div id="platform-filters"></div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>PRICE RANGE</h4>
+                    <div class="price-range">
+                        <label><input type="checkbox" value="pc"> PC</label>
+                        <div class="range-inputs">
+                            <input type="number" id="min-price" placeholder="Min" min="0">
+                            <input type="number" id="max-price" placeholder="Max" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>GENRES</h4>
+                    <div id="genre-filters"></div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Sort By</h4>
+                    <select id="sort-filter">
+                        <option value="">Default</option>
+                        <option value="-rating">Rating (High to Low)</option>
+                        <option value="rating">Rating (Low to High)</option>
+                        <option value="-released">Release Date (Newest)</option>
+                        <option value="released">Release Date (Oldest)</option>
+                        <option value="name">Name (A-Z)</option>
+                    </select>
+                </div>
+                
+                <button id="apply-filters" class="btn">Apply Filters</button>
+                <button id="clear-filters" class="btn btn-secondary">Clear All</button>
+            </aside>
+
+            <!-- Main Games Content -->
+            <div class="games-content">
+                <!-- New Releases Section -->
+                <section class="games-section">
+                    <h2>NEW RELEASES</h2>
+                    <div class="games-grid" id="new-releases-container">
+                        <!-- New releases will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Promo Banner -->
+                <div class="promo-banner">
+                    <p>🎉 LIMITED TIME OFFER: Get 20% off all indie games!</p>
+                </div>
+
+                <!-- Popular Games Section -->
+                <section class="games-section">
+                    <h2>POPULAR GAMES</h2>
+                    <div class="games-grid" id="games-container">
+                        <!-- Popular games will be loaded here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Dynamic footer will be inserted here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Trailer Modal -->
+    <div id="trailer-modal" class="trailer-modal">
+        <div class="trailer-modal-content">
+            <button class="trailer-close" id="trailer-close">&times;</button>
+            <div class="trailer-title" id="trailer-title">Game Trailer</div>
+            <div class="trailer-video-container" id="trailer-container">
+                <!-- Video will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>

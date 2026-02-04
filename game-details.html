@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store Library - Game Details</title>
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+</head>
+
+<body id="detail-page">
+    <div id="header-placeholder"></div>
+
+    <main class="container game-detail">
+        <div class="game-detail-layout">
+            <!-- Left Side - Hero Image & Screenshots -->
+            <div class="game-media">
+                <div class="hero-image">
+                    <img id="game-cover" src="" alt="Game Hero Image / Trailer">
+                </div>
+                <div class="screenshots-gallery">
+                    <div class="screenshots-row" id="screenshots-container">
+                        <!-- Screenshots will be loaded here -->
+                    </div>
+                    <div class="screenshot-nav">
+                        <span class="nav-label">GAME SCREENSHOT</span>
+                        <span class="nav-label">THUMBNAIL</span>
+                        <div class="nav-arrows">
+                            <button class="arrow-btn" id="prev-screenshot">←</button>
+                            <button class="arrow-btn" id="next-screenshot">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Game Info -->
+            <div class="game-info-panel">
+                <h1 id="game-title">GAME TITLE</h1>
+                <p class="developer-info">
+                    Developer: <span id="developer">[Studio Name]</span> | 
+                    Publisher: <span id="publisher">[Publisher Name]</span>
+                </p>
+                
+                <div class="game-description" id="game-description">
+                    <p>Loading game details...</p>
+                </div>
+
+                <h3>OVERVIEW</h3>
+                <p id="game-overview">Loading overview...</p>
+
+                <h3>GAME DETAILS</h3>
+                <div class="action-buttons">
+                    <button class="btn btn-primary download-btn" id="download-btn">
+                        DOWNLOAD | Size: <span id="game-size">[XX]</span>GB
+                    </button>
+                    <button id="wishlist-btn" class="btn btn-secondary wishlist-btn">
+                        ADD TO WISHLIST
+                    </button>
+                </div>
+
+                <div class="game-specs">
+                    <h4>SYSTEM REQUIREMENTS</h4>
+                    <ul class="specs-list">
+                        <li><strong>Genre:</strong> <span id="genres">Action, RPG</span></li>
+                        <li><strong>Release Date:</strong> <span id="release-date">[Date]</span></li>
+                        <li><strong>Platforms:</strong> <span id="platforms">[Platforms]</span></li>
+                        <li><strong>Rating:</strong> <span id="rating">[Rating]</span></li>
+                        <li><strong>OS:</strong> Windows 10/11</li>
+                    </ul>
+                </div>
+
+                <div class="system-requirements">
+                    <h4>MINIMUM REQUIREMENTS</h4>
+                    <ul id="min-requirements">
+                        <li><strong>Processor:</strong> Intel Core i5</li>
+                        <li><strong>Memory:</strong> 8 GB RAM</li>
+                        <li><strong>Graphics:</strong> GTX 1060</li>
+                        <li><strong>Storage:</strong> 50 GB available</li>
+                        <li><strong>Languages:</strong> English, Luganda, Swahili</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar Games Section -->
+        <section class="recommendations-section" id="recommendations-section">
+            <h2>Similar Games You Might Like</h2>
+            <div id="recommendations-container">
+                <!-- Recommendations will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

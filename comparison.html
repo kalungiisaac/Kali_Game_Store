@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store Library - Compare Games</title>
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+</head>
+<body id="comparison-page">
+    <div id="header-placeholder"></div>
+
+    <main class="container comparison">
+        <h1>⚖️ Compare Games</h1>
+        <p class="page-description">Select up to 3 games to compare side by side</p>
+        
+        <div class="comparison-search">
+            <div class="search-box">
+                <input type="text" id="compare-search" placeholder="Search for a game to add...">
+                <button id="compare-search-btn" class="btn">Search</button>
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </div>
+
+        <div class="comparison-slots">
+            <div class="comparison-slot" id="slot-1">
+                <div class="slot-empty">
+                    <span>+</span>
+                    <p>Add Game</p>
+                </div>
+            </div>
+            <div class="comparison-slot" id="slot-2">
+                <div class="slot-empty">
+                    <span>+</span>
+                    <p>Add Game</p>
+                </div>
+            </div>
+            <div class="comparison-slot" id="slot-3">
+                <div class="slot-empty">
+                    <span>+</span>
+                    <p>Add Game</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table-wrapper" id="comparison-table" style="display: none;">
+            <h2>Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th id="col-1">Game 1</th>
+                        <th id="col-2">Game 2</th>
+                        <th id="col-3">Game 3</th>
+                    </tr>
+                </thead>
+                <tbody id="comparison-body">
+                    <!-- Comparison rows will be generated here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

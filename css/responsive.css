@@ -1,0 +1,73 @@
+/* Responsive Design - Media Queries */
+/* Mobile First Approach */
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 3rem;
+  }
+  
+  .search-container {
+    max-width: 500px;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  .filter-panel {
+    width: 280px;
+  }
+  
+  .games-grid {
+    margin-left: 310px;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .filter-panel {
+    width: 300px;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin-left: 330px;
+  }
+}
+
+/* Hide filter panel on mobile */
+@media (max-width: 767px) {
+  .filter-panel {
+    display: none;
+  }
+  
+  .games-grid {
+    margin-left: 0;
+  }
+  
+  .game-detail .game-header {
+    flex-direction: column;
+  }
+  
+  .game-detail .game-cover {
+    width: 100%;
+  }
+}
+
+/* Game detail page adjustments */
+@media (max-width: 767px) {
+  .game-content {
+    margin-top: 1rem;
+  }
+}
+
+/* Footer responsive behavior */
+@media (max-width: 767px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
