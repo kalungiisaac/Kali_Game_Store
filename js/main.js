@@ -7,8 +7,8 @@ import { gameFilter } from './filter.js';
 import { gameComparison } from './comparison.js';
 import { recommendationEngine } from './recommendations.js';
 
-// Global trailer function
-window.openTrailer = async function(gameName) {
+// Global trailer function — plays in modal, never redirects
+window.openTrailer = async function(gameId, gameName) {
     const modal = document.getElementById('trailer-modal');
     const container = document.getElementById('trailer-container');
     const titleEl = document.getElementById('trailer-title');
@@ -18,50 +18,49 @@ window.openTrailer = async function(gameName) {
     // Show modal with loading state
     modal.classList.add('active');
     titleEl.textContent = `${gameName} - Loading Trailer...`;
-    container.innerHTML = '<div class="trailer-fallback"><p>🎬 Loading trailer...</p></div>';
+    container.innerHTML = '<div class="trailer-fallback"><div class="trailer-spinner"></div><p>🎬 Searching for trailer...</p></div>';
     
     try {
-        const trailer = await api.getGameTrailer(gameName);
+        const trailer = await api.getGameTrailer(gameId, gameName);
         
-        if (trailer) {
+        if (trailer && trailer.source === 'rawg') {
+            // RAWG has a direct MP4 video — play natively
             titleEl.textContent = `${gameName} - Official Trailer`;
-            
-            if (trailer.source === 'youtube') {
-                container.innerHTML = `<iframe src="${trailer.embedUrl}" allowfullscreen allow="autoplay"></iframe>`;
-            } else if (trailer.source === 'rawg' && trailer.videoUrl) {
-                container.innerHTML = `<video controls autoplay><source src="${trailer.videoUrl}" type="video/mp4">Your browser does not support video.</video>`;
-            } else if (trailer.source === 'youtube-search') {
-                container.innerHTML = `
-                    <div class="trailer-fallback">
-                        <p>🎮 Trailer not found directly</p>
-                        <a href="${trailer.searchUrl}" target="_blank">🔍 Search on YouTube</a>
-                    </div>
-                `;
-            }
+            container.innerHTML = `<video controls autoplay playsinline><source src="${trailer.videoUrl}" type="video/mp4">Your browser does not support video.</video>`;
+        } else if (trailer && trailer.source === 'youtube') {
+            // Embedded YouTube player
+            titleEl.textContent = `${gameName} - Official Trailer`;
+            container.innerHTML = `<iframe src="${trailer.embedUrl}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>`;
         } else {
+            // Fallback — show link but do NOT auto-open
+            titleEl.textContent = `${gameName} - Trailer`;
+            const searchUrl = trailer?.searchUrl || `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' official game trailer')}`;
             container.innerHTML = `
                 <div class="trailer-fallback">
-                    <p>😔 No trailer available</p>
-                    <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' trailer')}" target="_blank">🔍 Search on YouTube</a>
+                    <p>😕 Could not find an embeddable trailer.</p>
+                    <a href="${searchUrl}" target="_blank" class="trailer-yt-btn">▶ Search on YouTube</a>
                 </div>
             `;
         }
     } catch (error) {
         console.error('Trailer error:', error);
+        titleEl.textContent = `${gameName} - Trailer`;
+        const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' official game trailer')}`;
         container.innerHTML = `
             <div class="trailer-fallback">
-                <p>❌ Failed to load trailer</p>
-                <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' trailer')}" target="_blank">🔍 Search on YouTube</a>
+                <p>😕 Something went wrong loading the trailer.</p>
+                <a href="${searchUrl}" target="_blank" class="trailer-yt-btn">▶ Search on YouTube</a>
             </div>
         `;
     }
 };
 
-// Close trailer modal
+// Close trailer modal — stops any playing video/iframe
 window.closeTrailer = function() {
     const modal = document.getElementById('trailer-modal');
     const container = document.getElementById('trailer-container');
     if (modal) modal.classList.remove('active');
+    // Clear innerHTML to stop playback (iframes & videos)
     if (container) container.innerHTML = '';
 };
 
@@ -76,6 +75,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Set active navigation link
     setActiveNavLink();
+
+    // Setup hamburger menu toggle
+    setupHamburgerMenu();
     
     // Setup trailer modal close handlers
     const trailerModal = document.getElementById('trailer-modal');
@@ -140,6 +142,34 @@ function setActiveNavLink() {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
+        }
+    });
+}
+
+// Setup hamburger menu for mobile
+function setupHamburgerMenu() {
+    const btn = document.getElementById('hamburger-btn');
+    const nav = document.getElementById('main-nav');
+    if (!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+
+    // Close when a nav link is clicked
+    nav.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            btn.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !nav.contains(e.target)) {
+            btn.classList.remove('active');
+            nav.classList.remove('open');
         }
     });
 }
@@ -233,7 +263,7 @@ async function initBrowsePage() {
                     if (platformsEl) platformsEl.textContent = `Available on ${f.parent_platforms?.map(p => p.platform.name).join(', ') || 'Multiple Platforms'}`;
                     if (linkEl) linkEl.href = `game-details.html?id=${f.id}`;
                     if (bgEl && f.background_image) bgEl.style.backgroundImage = `url('${f.background_image}')`;
-                    if (trailerBtn) trailerBtn.onclick = () => window.openTrailer(f.name);
+                    if (trailerBtn) trailerBtn.onclick = () => window.openTrailer(f.id, f.name);
                     document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === index));
                     if (bgEl) bgEl.style.opacity = '1';
                     if (contentEl) contentEl.style.opacity = '1';
@@ -353,12 +383,24 @@ async function initBrowsePage() {
     await Promise.allSettled([
         loadGamesPage(1),
 
-        // Upcoming Releases (12 games)
+        // New Releases (upcoming games)
         loadSection('upcoming-container', async () => {
             const data = await api.fetchGames({
                 dates: `${todayStr},${futureStr}`,
                 ordering: 'released',
-                page_size: 12,
+                page_size: 4,
+                platforms: platformIds
+            });
+            return data.results || [];
+        }, renderGames),
+
+        // Limited Time Deals (highly rated recent indie games)
+        loadSection('deals-container', async () => {
+            const data = await api.fetchGames({
+                ordering: '-rating',
+                page_size: 4,
+                genres: '51',
+                metacritic: '70,100',
                 platforms: platformIds
             });
             return data.results || [];

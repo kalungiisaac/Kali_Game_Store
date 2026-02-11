@@ -1,15 +1,378 @@
 /* Responsive Design - Media Queries */
 /* Mobile First Approach */
 
-/* Mobile - 1 card per row */
-@media (max-width: 767px) {
-  .games-grid,
-  .deals-grid {
-    grid-template-columns: 1fr;
-  }
+/* ==========================================
+   HAMBURGER MENU
+   ========================================== */
+
+.hamburger {
+  display: none;
+  background: var(--primary);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 6px 7px;
+  z-index: 200;
+  width: 34px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Tablet - 2 cards per row */
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  margin: 3px auto;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ==========================================
+   SMALL SCREEN — max-width 767px (Wireframe)
+   ========================================== */
+
+@media (max-width: 767px) {
+
+  /* ---- Header ---- */
+  .header-container {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .logo-text {
+    font-size: 0.85rem;
+  }
+
+  .logo-icon img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .search-container {
+    display: none; /* hide search bar on mobile; accessible via nav */
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0.75rem;
+    left: auto;
+    width: 160px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    flex-direction: column;
+    padding: 0.5rem 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(168, 85, 247, 0.15);
+    border-radius: 8px;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    z-index: 150;
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .main-nav .nav-link {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .main-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .header-icons #wishlist-count {
+    display: none;
+  }
+
+  /* ---- Container ---- */
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  /* ---- Featured Banner ---- */
+  .featured-game {
+    min-height: 220px;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    margin: 0.75rem 0;
+  }
+
+  .featured-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .featured-content p {
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .featured-buttons {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .featured-buttons .btn,
+  .featured-buttons .btn-trailer {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .featured-game .slide-indicator {
+    bottom: 8px;
+    right: 10px;
+    gap: 5px;
+  }
+
+  .featured-game .slide-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  /* ---- Hide sidebar filters on mobile ---- */
+  .filter-panel {
+    display: none;
+  }
+
+  /* ---- Main content single-column ---- */
+  .main-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ---- Section headers ---- */
+  .section-header h2,
+  .games-section h2 {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .games-section {
+    margin-bottom: 1.5rem;
+  }
+
+  /* ---- 2-column card grid (wireframe) ---- */
+  .games-grid,
+  .deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* ---- Card adjustments ---- */
+  .game-card {
+    border-radius: 8px;
+  }
+
+  .game-cover {
+    height: 140px;
+  }
+
+  .wireframe-card .card-image {
+    height: 140px;
+  }
+
+  .game-title,
+  .wireframe-card .card-title {
+    font-size: 0.8rem;
+  }
+
+  .game-meta,
+  .wireframe-card .card-platform {
+    font-size: 0.75rem;
+  }
+
+  .wireframe-card .card-meta {
+    font-size: 0.7rem;
+  }
+
+  .game-info .download-btn,
+  .card-content .download-btn {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  /* Show card info always on mobile (no hover) */
+  .game-card .game-info,
+  .game-card .card-content {
+    position: relative;
+    transform: none;
+    opacity: 1;
+    background: linear-gradient(0deg, rgba(10,10,20,0.97) 0%, rgba(15,15,30,0.92) 100%);
+    padding: 0.6rem;
+  }
+
+  .game-card:hover .game-cover {
+    transform: none;
+    filter: none;
+  }
+
+  .game-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .card-image-wrapper .watch-trailer-btn {
+    display: none;
+  }
+
+  /* ---- Promo banner ---- */
+  .promo-banner {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+  }
+
+  /* ---- Deals label row ---- */
+  .deals-label-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  .deals-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+  }
+
+  /* ---- Pagination compact ---- */
+  .pagination {
+    padding: 0.75rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .page-num {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  /* ---- Footer ---- */
+  .footer {
+    padding: 1.25rem 0 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .footer-newsletter {
+    align-items: center;
+  }
+
+  .newsletter {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .newsletter input {
+    width: 100%;
+  }
+
+  .newsletter .btn {
+    width: 100%;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    font-size: 0.75rem;
+  }
+
+  /* ---- Game detail page ---- */
+  .game-detail .game-header {
+    flex-direction: column;
+  }
+
+  .game-detail .game-cover,
+  .game-header .game-cover {
+    width: 100%;
+  }
+
+  .game-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .game-content {
+    margin-top: 1rem;
+  }
+
+  /* ---- Comparison page ---- */
+  .comparison-slots {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* ---- Deals page ---- */
+  .deals-filters {
+    flex-direction: column;
+  }
+
+  .deals-filters select {
+    width: 100%;
+  }
+
+  /* ---- Category filters ---- */
+  .category-filters {
+    justify-content: center;
+  }
+
+  /* ---- Trailer modal ---- */
+  .trailer-modal-content {
+    width: 95%;
+  }
+
+  .trailer-title {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+
+  /* ---- Typography tighten ---- */
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+  h3 { font-size: 1rem; }
+}
+
+/* ==========================================
+   TABLET — 768px to 1023px
+   ========================================== */
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .games-grid,
   .deals-grid {
@@ -23,9 +386,20 @@
   .search-container {
     max-width: 500px;
   }
+
+  .hamburger {
+    display: none;
+  }
+
+  .deals-label-row {
+    display: none;
+  }
 }
 
-/* Desktop and up - 3 cards per row */
+/* ==========================================
+   DESKTOP — 1024px and up
+   ========================================== */
+
 @media (min-width: 1024px) {
   .games-grid,
   .deals-grid {
@@ -39,40 +413,19 @@
   .container {
     padding: 0 3rem;
   }
+
+  .hamburger {
+    display: none;
+  }
+
+  .deals-label-row {
+    display: none;
+  }
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
   .filter-panel {
     width: 300px;
-  }
-}
-
-/* Hide filter panel on mobile */
-@media (max-width: 767px) {
-  .filter-panel {
-    display: none;
-  }
-  
-  .game-detail .game-header {
-    flex-direction: column;
-  }
-  
-  .game-detail .game-cover {
-    width: 100%;
-  }
-}
-
-/* Game detail page adjustments */
-@media (max-width: 767px) {
-  .game-content {
-    margin-top: 1rem;
-  }
-}
-
-/* Footer responsive behavior */
-@media (max-width: 767px) {
-  .footer-content {
-    grid-template-columns: 1fr;
   }
 }

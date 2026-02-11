@@ -9,6 +9,20 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
 </head>
 <body id="comparison-page">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader-content">
+            <div class="circles-wrapper">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <p class="loader-text">KALI GAME STORE</p>
+        </div>
+    </div>
+
     <div id="header-placeholder"></div>
 
     <main class="container comparison">
@@ -64,6 +78,7 @@
 
     <div id="footer-placeholder"></div>
 
+    <script type="module" src="./js/loader.js"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>

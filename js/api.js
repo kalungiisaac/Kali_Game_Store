@@ -258,63 +258,76 @@ class Api {
         return await this.fetchWithRateLimit(url);
     }
 
-    // Get YouTube trailer for a game
-    async getGameTrailer(gameName) {
+    // Get trailer for a game — uses RAWG movies endpoint, then Piped API for YouTube embed
+    async getGameTrailer(gameId, gameName) {
         try {
-            // First try RAWG's own movie/trailer endpoint
-            const gameData = await this.searchGames(gameName);
-            if (gameData.results && gameData.results[0]) {
-                const gameId = gameData.results[0].id;
-                const movieUrl = `${BASE_URL}/games/${gameId}/movies?key=${API_KEY}`;
-                const movieData = await this.fetchWithRateLimit(movieUrl);
-                
-                if (movieData && movieData.results && movieData.results.length > 0) {
-                    // RAWG has trailers - return the video URL
-                    const trailer = movieData.results[0];
+            // 1) Try RAWG's movie/trailer endpoint directly with the game ID
+            const movieUrl = `${BASE_URL}/games/${gameId}/movies?key=${API_KEY}`;
+            const movieData = await this.fetchWithRateLimit(movieUrl);
+            
+            if (movieData && movieData.results && movieData.results.length > 0) {
+                const trailer = movieData.results[0];
+                const videoUrl = trailer.data?.max || trailer.data?.['480'] || null;
+                if (videoUrl) {
                     return {
                         source: 'rawg',
                         id: trailer.id,
                         name: trailer.name,
                         preview: trailer.preview,
-                        videoUrl: trailer.data?.max || trailer.data?.['480'] || null
+                        videoUrl: videoUrl
                     };
                 }
             }
-            
-            // Fallback to YouTube search
-            const searchQuery = encodeURIComponent(`${gameName} official game trailer`);
-            const ytUrl = `${YOUTUBE_API_URL}?part=snippet&q=${searchQuery}&type=video&maxResults=1&key=${YOUTUBE_API_KEY}`;
-            
-            const response = await fetch(ytUrl);
-            if (!response.ok) {
-                // If YouTube API fails, return a search link
-                return {
-                    source: 'youtube-search',
-                    searchUrl: `https://www.youtube.com/results?search_query=${searchQuery}`
-                };
-            }
-            
-            const data = await response.json();
-            if (data.items && data.items.length > 0) {
-                const video = data.items[0];
+
+            // 2) Search YouTube via Piped API (free, no key needed) to get a real video ID
+            const searchQuery = `${gameName} official game trailer`;
+            const videoId = await this.searchYouTubeVideoId(searchQuery);
+            if (videoId) {
                 return {
                     source: 'youtube',
-                    id: video.id.videoId,
-                    title: video.snippet.title,
-                    thumbnail: video.snippet.thumbnails.high.url,
-                    embedUrl: `https://www.youtube.com/embed/${video.id.videoId}?autoplay=1`
+                    videoId: videoId,
+                    embedUrl: `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`
                 };
             }
-            
-            return null;
+
+            // 3) Last resort — return search URL for manual link
+            return {
+                source: 'fallback',
+                searchUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`
+            };
         } catch (error) {
             console.error('Trailer fetch error:', error);
-            // Return YouTube search as fallback
             return {
-                source: 'youtube-search',
+                source: 'fallback',
                 searchUrl: `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' trailer')}`
             };
         }
+    }
+
+    // Search for a YouTube video ID using free Piped API instances
+    async searchYouTubeVideoId(query) {
+        const pipedInstances = [
+            'https://pipedapi.kavin.rocks',
+            'https://pipedapi.adminforge.de',
+            'https://api.piped.projectsegfault.com'
+        ];
+
+        for (const instance of pipedInstances) {
+            try {
+                const url = `${instance}/search?q=${encodeURIComponent(query)}&filter=videos`;
+                const resp = await fetch(url, { signal: AbortSignal.timeout(5000) });
+                if (!resp.ok) continue;
+                const data = await resp.json();
+                if (data.items && data.items.length > 0) {
+                    // items[].url is like "/watch?v=VIDEO_ID"
+                    const match = data.items[0].url?.match(/[?&]v=([^&]+)/);
+                    if (match) return match[1];
+                }
+            } catch (e) {
+                console.warn(`Piped instance ${instance} failed:`, e.message);
+            }
+        }
+        return null;
     }
 }
 

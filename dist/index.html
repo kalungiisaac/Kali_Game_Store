@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KALI Game Store  | Browse Games</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+  <script type="module" crossorigin src="/assets/main-uqSDGu29.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-CWWOdr3F.css">
+</head>
+<body id="index-page">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader-content">
+            <div class="circles-wrapper">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <p class="loader-text">KALI GAME STORE</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <!-- Featured Game Banner -->
+        <section class="featured-game" id="featured-game">
+            <div class="featured-bg" id="featured-bg"></div>
+            <div class="featured-overlay"></div>
+            <div class="featured-content">
+                <h2>FEATURED: <span id="featured-title">Loading...</span></h2>
+                <p id="featured-platforms">Loading platforms...</p>
+                <div class="featured-buttons">
+                    <a href="#" id="featured-link" class="btn">LEARN MORE</a>
+                    <button class="btn btn-trailer" id="featured-trailer">DOWNLOADS</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <!-- Sidebar Filters -->
+            <aside class="filter-panel">
+                <h3>FILTERS</h3>
+                
+                <div class="filter-group">
+                    <h4>PLATFORMS</h4>
+                    <div id="platform-filters"></div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>GENRES</h4>
+                    <div id="genre-filters"></div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Sort By</h4>
+                    <select id="sort-filter">
+                        <option value="">Default</option>
+                        <option value="-rating">Rating (High to Low)</option>
+                        <option value="rating">Rating (Low to High)</option>
+                        <option value="-released">Release Date (Newest)</option>
+                        <option value="released">Release Date (Oldest)</option>
+                        <option value="name">Name (A-Z)</option>
+                    </select>
+                </div>
+                
+                <button id="apply-filters" class="btn">Apply Filters</button>
+                <button id="clear-filters" class="btn btn-secondary">Clear All</button>
+            </aside>
+
+            <!-- Main Games Content -->
+            <div class="games-content">
+                <!-- New Releases Section -->
+                <section class="games-section">
+                    <div class="section-header">
+                        <h2>NEW RELEASES</h2>
+                        <a href="upcoming.html" class="see-all-link">See All →</a>
+                    </div>
+                    <div class="games-grid" id="upcoming-container"></div>
+                </section>
+
+                <!-- Promo Banner -->
+                <div class="promo-banner" id="promo-banner">
+                    🎮 POFFERCAMER: 20% off all indie games!
+                </div>
+
+                <!-- Limited Time Deals Section -->
+                <section class="games-section">
+                    <div class="section-header">
+                        <h2>🔥 LIMITED TIME DEALS</h2>
+                    </div>
+                    <div class="deals-label-row">
+                        <span class="deals-label">Min</span>
+                        <span class="deals-label">Max</span>
+                    </div>
+                    <div class="games-grid" id="deals-container"></div>
+                </section>
+
+                <!-- Popular Games Section -->
+                <section class="games-section">
+                    <div class="section-header">
+                        <h2>🔥 POPULAR GAMES</h2>
+                        <span id="games-count" class="games-count"></span>
+                    </div>
+                    <div class="games-grid" id="games-container"></div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination">
+                        <button class="page-btn" id="prev-page" disabled>← Previous</button>
+                        <div class="page-numbers" id="page-numbers"></div>
+                        <button class="page-btn" id="next-page">Next →</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Trailer Modal -->
+    <div id="trailer-modal" class="trailer-modal">
+        <div class="trailer-modal-content">
+            <button class="trailer-close" id="trailer-close">&times;</button>
+            <div class="trailer-title" id="trailer-title">Game Trailer</div>
+            <div class="trailer-video-container" id="trailer-container"></div>
+        </div>
+    </div>
+
+</body>
+</html>

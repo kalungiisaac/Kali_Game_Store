@@ -24,7 +24,7 @@ export function renderGames(games, containerId) {
                 <span class="heart" title="Add to Wishlist">♥</span>
             </div>
             <div class="card-image-wrapper">
-                <button class="watch-trailer-btn" onclick="event.stopPropagation(); window.openTrailer('${(game.name || '').replace(/'/g, "\\'")}')">
+                <button class="watch-trailer-btn" onclick="event.stopPropagation(); window.openTrailer(${game.id}, '${(game.name || '').replace(/'/g, "\\'")}')">
                     ▶ Trailer
                 </button>
                 <img src="${game.background_image || 'https://via.placeholder.com/300x200?text=No+Image'}" 
@@ -80,7 +80,7 @@ export function renderGamesWithDownload(games, containerId) {
                      data-name="${game.name}" 
                      data-image="${game.background_image || ''}">
                 <div class="card-image">
-                    <button class="watch-trailer-btn" data-game-name="${game.name}" onclick="event.stopPropagation(); window.openTrailer('${game.name.replace(/'/g, "\\'")}')">
+                    <button class="watch-trailer-btn" data-game-name="${game.name}" onclick="event.stopPropagation(); window.openTrailer(${game.id}, '${game.name.replace(/'/g, "\\'")}')">
                         ▶ Trailer
                     </button>
                     <img src="${game.background_image || 'https://via.placeholder.com/200x150?text=No+Image'}" 
