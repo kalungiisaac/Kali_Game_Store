@@ -84,12 +84,12 @@
     right: 0.75rem;
     left: auto;
     width: 160px;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    background: #16213e;
     flex-direction: column;
     padding: 0.5rem 0;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(168, 85, 247, 0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     border-radius: 8px;
-    border: 1px solid rgba(168, 85, 247, 0.25);
+    border: 1px solid rgba(168, 85, 247, 0.15);
     z-index: 150;
   }
 
@@ -187,7 +187,7 @@
 
   /* ---- Card adjustments ---- */
   .game-card {
-    border-radius: 8px;
+    border-radius: 6px;
   }
 
   .game-cover {
@@ -218,6 +218,17 @@
     font-size: 0.75rem;
   }
 
+  .game-cover:hover {
+    transform: none;
+    filter: none;
+  }
+
+  /* Show trailer button on mobile */
+  .watch-trailer-btn {
+    opacity: 1 !important;
+    display: flex !important;
+  }
+
   /* Show card info always on mobile (no hover) */
   .game-card .game-info,
   .game-card .card-content {
@@ -239,7 +250,18 @@
   }
 
   .card-image-wrapper .watch-trailer-btn {
-    display: none;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(233, 69, 96, 0.85);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.75rem;
+    position: absolute;
+  }
+
+  .card-image-wrapper .watch-trailer-btn:active {
+    background: #ff6b6b;
   }
 
   /* ---- Promo banner ---- */
@@ -280,6 +302,17 @@
     width: 32px;
     height: 32px;
     font-size: 0.8rem;
+  }
+
+  /* ---- Wishlist page ---- */
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .remove-btn {
+    padding: 0.4rem;
+    font-size: 0.75rem;
   }
 
   /* ---- Footer ---- */
@@ -328,6 +361,8 @@
   .game-detail .game-cover,
   .game-header .game-cover {
     width: 100%;
+    height: auto;
+    max-height: 300px;
   }
 
   .game-detail-layout {
@@ -335,7 +370,22 @@
   }
 
   .game-content {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .game-header-info h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .game-meta-details {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .game-meta-details span {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
   }
 
   /* ---- Comparison page ---- */
@@ -343,24 +393,148 @@
     grid-template-columns: 1fr;
   }
 
+  .comparison-slot {
+    min-height: 150px;
+  }
+
+  .slot-filled img {
+    height: 100px;
+  }
+
+  .comparison-table-wrapper {
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+
   .comparison-table th,
   .comparison-table td {
-    padding: 0.5rem;
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .comparison-table th {
+    font-size: 0.7rem;
+  }
+
+  /* ---- Filter Panel on Mobile ---- */
+  .filter-panel {
+    position: sticky;
+    top: 60px;
+    width: 100%;
+    max-height: calc(100vh - 100px);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .filter-panel h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .filter-group {
+    margin-bottom: 1rem;
+  }
+
+  .filter-group h4 {
     font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .filter-group label {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .filter-group select {
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+  }
+
+  #apply-filters,
+  #clear-filters {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
   }
 
   /* ---- Deals page ---- */
   .deals-filters {
     flex-direction: column;
+    gap: 0.5rem;
   }
 
   .deals-filters select {
     width: 100%;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .deal-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .deal-card {
+    border-radius: 6px;
+  }
+
+  .deal-image {
+    height: 120px;
+  }
+
+  .deal-info {
+    padding: 0.6rem;
+  }
+
+  .deal-title {
+    font-size: 0.85rem;
+  }
+
+  .deal-prices,
+  .deal-meta {
+    font-size: 0.8rem;
+  }
+
+  /* ---- Upcoming/New Releases page ---- */
+
+  .game-release-info {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  /* ---- Free games page ---- */
+  .free-game-card {
+    border-radius: 6px;
+  }
+
+  .free-badge {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .free-game-card .game-desc {
+    font-size: 0.8rem;
+    margin: 0.3rem 0 0.5rem;
   }
 
   /* ---- Category filters ---- */
   .category-filters {
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .category-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 16px;
   }
 
   /* ---- Trailer modal ---- */
@@ -377,6 +551,49 @@
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.2rem; margin-bottom: 0.75rem; }
   h3 { font-size: 1rem; }
+
+  /* ---- Button styles on mobile ---- */
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+  }
+
+  .btn-primary {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* ---- Empty state ---- */
+  .empty-state {
+    padding: 2rem 1rem;
+    border-radius: 6px;
+  }
+
+  .empty-state h3 {
+    font-size: 1rem;
+  }
+
+  .empty-state p {
+    font-size: 0.9rem;
+  }
+
+  /* ---- Error container ---- */
+  .error-container {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+    border-radius: 6px;
+    max-width: 100%;
+  }
+
+  .error-container h2,
+  .error-container h3 {
+    font-size: 1rem;
+  }
+
+  .error-container p {
+    font-size: 0.9rem;
+  }
 }
 
 /* ==========================================

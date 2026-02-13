@@ -1,8 +1,5 @@
-// loader.js Loading screen with pure CSS animations (no external deps)
-// Animations are handled entirely by CSS keyframes in styles.css.
-// This script only dismisses the overlay once the page is ready.
-
-const MIN_DISPLAY = 1800; // ms  let the animation play before hiding
+// loader.js - Optimized for performance
+const MIN_DISPLAY = 800; // ms - faster loading screen
 const start = performance.now?.() ?? Date.now();
 
 window.addEventListener('load', () => {
@@ -14,8 +11,13 @@ window.addEventListener('load', () => {
 
   setTimeout(() => {
     screen.classList.add('fade-out');
-    screen.addEventListener('transitionend', () => screen.remove(), { once: true });
-    // Safety fallback — remove after 1s even if transitionend never fires
-    setTimeout(() => { if (screen.parentNode) screen.remove(); }, 1000);
+    const handler = () => screen.parentNode && screen.remove();
+    screen.addEventListener('transitionend', handler, { once: true });
+    setTimeout(handler, 600); // Fallback
   }, remaining);
+
+  // Load decorative animations after page is ready
+  setTimeout(() => {
+    document.documentElement.classList.add('animations-enabled');
+  }, 1000);
 });
