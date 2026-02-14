@@ -1,5 +1,15 @@
-<header class="header">
-    <div class="container header-container">
+export class header{
+    constructor(){
+        this.container = document.querySelector('.header');
+        if (this.container) {
+            this.render();
+        }
+    }
+
+    render(){
+        if (!this.container) return;
+        this.container.innerHTML = `
+         <div class="container header-container">
         <a href="index.html" class="logo">
             <span class="logo-icon"><img src="https://i.pinimg.com/736x/bb/9a/d2/bb9ad2a97b7d12fb381c6f61b91d5e11.jpg" alt="KALI Game Store Logo" width="40" height="40" decoding="async" fetchpriority="low" loading="lazy"></span>
             <span class="logo-text">KALI GAME STORE</span>
@@ -17,7 +27,7 @@
             </div>
             <div class="header-icons">
                 <a href="wishlist.html" class="icon-link" title="Wishlist">
-                    ❤️ <span id="wishlist-count">(0)</span>
+                💌<span id="wishlist-count">(0)</span>
                 </a>
             </div>
             <!-- Hamburger menu button for mobile -->
@@ -28,4 +38,10 @@
             </button>
         </div>
     </div>
-</header>
+        `
+    }
+
+};
+
+
+

@@ -6,10 +6,12 @@ import api from './api.js';
 import { gameFilter } from './filter.js';
 import { gameComparison } from './comparison.js';
 import { recommendationEngine } from './recommendations.js';
+import {footer} from './footer.js'
+import {header} from './header.js'
 
 // Global trailer function — plays in modal, never redirects
 window.openTrailer = async function(gameId, gameName) {
-    const modal = document.getElementById('trailer-modal');
+    const modal = document.getElementById('trailer-modal')
     const container = document.getElementById('trailer-container');
     const titleEl = document.getElementById('trailer-title');
     
@@ -32,7 +34,7 @@ window.openTrailer = async function(gameId, gameName) {
             titleEl.textContent = `${gameName} - Official Trailer`;
             container.innerHTML = `<iframe src="${trailer.embedUrl}" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>`;
         } else {
-            // Fallback — show link but do NOT auto-open
+            // Fallback show link but do NOT auto-open
             titleEl.textContent = `${gameName} - Trailer`;
             const searchUrl = trailer?.searchUrl || `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' official game trailer')}`;
             container.innerHTML = `
@@ -65,9 +67,13 @@ window.closeTrailer = function() {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Load dynamic header and footer
-    await loadPartial('header', 'header-placeholder');
-    await loadPartial('footer', 'footer-placeholder');
+    // Initialize header and footer
+    try {
+        new header();
+        new footer();
+    } catch (e) {
+        console.error('Error initializing header/footer:', e);
+    }
     
     // Initialize wishlist and update counts
     const wishlist = new Wishlist();

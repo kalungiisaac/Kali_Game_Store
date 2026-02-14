@@ -1,5 +1,14 @@
-<footer class="footer">
-    <div class="container">
+export class footer {
+    constructor() {
+        this.container = document.querySelector('.footer');
+        if (this.container) {
+            this.render();
+        }
+    }
+
+    render() {
+        this.container.innerHTML = `
+         <div class="container">
         <div class="footer-content">
             <div class="footer-section footer-brand">
                 <div class="footer-logo">
@@ -59,4 +68,8 @@
             <p>&copy; 2026 Game Store. All rights reserved.</p>
         </div>
     </div>
-</footer>
+
+        `
+    }
+
+};
