@@ -48,6 +48,12 @@ class Wishlist {
             countElement.textContent = `(${this.wishlist.length})`;
         }
         
+        // Update navigation count badge
+        const navCountElement = document.getElementById('wishlist-count-nav');
+        if (navCountElement) {
+            navCountElement.textContent = `(${this.wishlist.length})`;
+        }
+        
         // Update empty state on wishlist page
         const emptyState = document.getElementById('empty-wishlist');
         if (emptyState) {

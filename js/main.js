@@ -430,6 +430,13 @@ async function initBrowsePage() {
         searchInput.addEventListener('keypress', e => {
             if (e.key === 'Enter') handleSearch();
         });
+        // Clear search when input is emptied
+        searchInput.addEventListener('input', e => {
+            if (e.target.value.trim() === '') {
+                // Reset to initial games
+                loadInitialGames();
+            }
+        });
     }
     
     // Load filters
@@ -814,6 +821,14 @@ async function handleSearch() {
                 </div>
             `;
         }
+        
+        // Scroll to results
+        setTimeout(() => {
+            const gamesContainer = document.getElementById('games-container');
+            if (gamesContainer) {
+                gamesContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
     } catch (error) {
         console.error('Search failed:', error);
         document.getElementById('games-container').innerHTML = `
@@ -823,6 +838,12 @@ async function handleSearch() {
             </div>
         `;
     }
+}
+
+// Load initial games (reset search)
+async function loadInitialGames() {
+    currentPage = 1;
+    await loadGamesPage(1);
 }
 
 // Update wishlist button state

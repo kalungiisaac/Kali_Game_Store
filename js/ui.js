@@ -21,7 +21,9 @@ export function renderGames(games, containerId) {
                  data-name="${game.name}" 
                  data-image="${game.background_image || ''}">
             <div class="wishlist-icon">
-                <span class="heart" title="Add to Wishlist">♥</span>
+                <svg class="heart" title="Add to Wishlist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
             </div>
             <div class="card-image-wrapper">
                 <button class="watch-trailer-btn" onclick="event.stopPropagation(); window.openTrailer(${game.id}, '${(game.name || '').replace(/'/g, "\\'")}')">
@@ -141,7 +143,9 @@ export function renderWishlist(wishlistItems) {
                          data-image="${game.background_image || ''}"
                          onclick="window.location.href='game-details.html?id=${game.id}'">
                     <div class="wishlist-icon">
-                        <span class="heart active" title="Remove from Wishlist">♥</span>
+                        <svg class="heart active" title="Remove from Wishlist" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
                     </div>
                     <img src="${game.background_image || 'https://via.placeholder.com/300x200?text=No+Image'}" 
                          alt="${game.name}" 
@@ -149,11 +153,19 @@ export function renderWishlist(wishlistItems) {
                          loading="lazy">
                     <div class="game-info">
                         <h3 class="game-title">${game.name}</h3>
-                        <button class="btn btn-secondary remove-btn" 
-                                data-id="${game.id}"
-                                onclick="event.stopPropagation();">
-                            Remove
-                        </button>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-secondary" 
+                                    onclick="event.stopPropagation(); window.openTrailer(${game.id}, '${game.name.replace(/'/g, "\\'")}');"
+                                    style="flex: 1;">
+                                🎬 Trailer
+                            </button>
+                            <button class="btn btn-secondary remove-btn" 
+                                    data-id="${game.id}"
+                                    onclick="event.stopPropagation();"
+                                    style="flex: 1;">
+                                Remove
+                            </button>
+                        </div>
                     </div>
                 </article>
             `).join('')}

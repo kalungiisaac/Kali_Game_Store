@@ -70,6 +70,9 @@
                     <button class="btn btn-primary download-btn" id="download-btn">
                         DETAILS | Playtime: <span id="game-size">--</span>
                     </button>
+                    <button id="trailer-btn-details" class="btn btn-secondary" onclick="window.openTrailer(parseInt(new URLSearchParams(window.location.search).get('id')), document.getElementById('game-title').textContent)">
+                        🎬 WATCH TRAILER
+                    </button>
                     <button id="wishlist-btn" class="btn btn-secondary wishlist-btn">
                         ADD TO WISHLIST
                     </button>

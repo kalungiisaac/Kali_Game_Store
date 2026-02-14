@@ -17,7 +17,7 @@ export class header{
         <nav class="main-nav" id="main-nav">
             <a href="index.html" class="nav-link">Browse</a>
             <a href="upcoming.html" class="nav-link">Upcoming</a>
-            <a href="wishlist.html" class="nav-link">Wishlist</a>
+            <a href="wishlist.html" class="nav-link">Wishlist <span id="wishlist-count-nav" style="background: darkblue; color: white; border-radius: 50%; padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-left: 0.3rem;">(0)</span></a>
             <a href="comparison.html" class="nav-link">Compare</a>
         </nav>
         <div class="header-right">
@@ -26,9 +26,6 @@ export class header{
                 <button id="search-btn" aria-label="Search">🔍</button>
             </div>
             <div class="header-icons">
-                <a href="wishlist.html" class="icon-link" title="Wishlist">
-                💌<span id="wishlist-count">(0)</span>
-                </a>
             </div>
             <!-- Hamburger menu button for mobile -->
             <button class="hamburger" id="hamburger-btn" aria-label="Menu">
