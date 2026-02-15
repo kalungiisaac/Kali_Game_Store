@@ -661,7 +661,6 @@
 /* Reduce rendering cost for off-screen game cards */
 .game-card {
   content-visibility: auto;
-  contain-intrinsic-size: 200px 300px;
 }
 
 .games-grid > .game-card:nth-child(n+13) {
