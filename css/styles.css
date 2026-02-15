@@ -281,6 +281,7 @@ img {
 .header-icons {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .icon-link {
@@ -295,7 +296,58 @@ img {
   color: #e94560;
 }
 
-/* Featured Game Banner */
+.user-account-icon {
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+  stroke: currentColor;
+  transition: all 0.3s ease;
+}
+
+.user-account-link:hover .user-account-icon {
+  color: #e94560;
+  filter: drop-shadow(0 0 8px rgba(233, 69, 96, 0.6));
+}
+
+/* User Greeting Styles */
+.user-greeting {
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.user-greeting strong {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #e94560 0%, #c9255f 100%);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #ff6b7a 0%, #e94560 100%);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.4);
+  transform: translateY(-2px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}/* Featured Game Banner */
 .featured-game {
   position: relative;
   border-radius: 12px;
@@ -2432,4 +2484,274 @@ p {
 
 .comparison-table-wrapper.active {
   display: block;
+}
+
+/* Registration & Authentication Styles */
+.register-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.register-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.register-modal-content {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 450px;
+  color: #f0f0f0;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #f0f0f0;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #e94560;
+}
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-tabs .tab-btn {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  border-bottom: 2px solid transparent;
+}
+
+.modal-tabs .tab-btn.active {
+  color: #4ade80;
+  border-bottom-color: #4ade80;
+}
+
+.modal-tabs .tab-btn:hover {
+  color: #f0f0f0;
+}
+
+.tab-content {
+  padding: 1.5rem;
+}
+
+.register-form,
+.login-form {
+  transition: opacity 0.3s;
+}
+
+.register-form.hidden,
+.login-form.hidden {
+  display: none;
+  opacity: 0;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.2);
+}
+
+.form-message {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  display: none;
+}
+
+.form-message.error {
+  display: block;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.form-message.success {
+  display: block;
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+/* Register Page Styles */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.register-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  color: #f0f0f0;
+}
+
+.register-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.register-tab-btn {
+  flex: 1;
+  padding: 1.25rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  border-bottom: 3px solid transparent;
+}
+
+.register-tab-btn.active {
+  color: #4ade80;
+  border-bottom-color: #4ade80;
+}
+
+.register-tab-btn:hover {
+  color: #f0f0f0;
+}
+
+.register-tab-content {
+  padding: 2rem;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.register-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-tab-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tab-description {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.logout-btn {
+  margin-left: 0.5rem;
+}
+
+/* User Account Link Styling */
+.user-account-link {
+  color: #f0f0f0;
+  transition: all 0.3s;
+}
+
+.user-account-link:hover {
+  color: #e94560;
+  filter: drop-shadow(0 0 8px rgba(233, 69, 96, 0.6));
 }

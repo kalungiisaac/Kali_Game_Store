@@ -26,6 +26,18 @@ export class header{
                 <button id="search-btn" aria-label="Search">🔍</button>
             </div>
             <div class="header-icons">
+                <a href="register.html" class="icon-link user-account-link" title="Sign In / User Account">
+                    <svg class="user-account-icon" width="32" height="32" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Outer circle -->
+                        <circle cx="128" cy="128" r="110" fill="none" stroke="currentColor" stroke-width="16"/>
+                        
+                        <!-- Head -->
+                        <circle cx="128" cy="96" r="32" fill="none" stroke="currentColor" stroke-width="16"/>
+                        
+                        <!-- Shoulders -->
+                        <path d="M64 176 A64 64 0 0 1 192 176" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"/>
+                    </svg>
+                </a>
             </div>
             <!-- Hamburger menu button for mobile -->
             <button class="hamburger" id="hamburger-btn" aria-label="Menu">
@@ -38,7 +50,6 @@ export class header{
         `
     }
 
-};
-
+}
 
 

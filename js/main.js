@@ -8,6 +8,7 @@ import { gameComparison } from './comparison.js';
 import { recommendationEngine } from './recommendations.js';
 import {footer} from './footer.js'
 import {header} from './header.js'
+import {register} from './register.js'
 
 // Global trailer function — plays in modal, never redirects
 window.openTrailer = async function(gameId, gameName) {
@@ -71,8 +72,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         new header();
         new footer();
+        new register();
     } catch (e) {
-        console.error('Error initializing header/footer:', e);
+        console.error('Error initializing header/footer/register:', e);
     }
     
     // Initialize wishlist and update counts
