@@ -47,8 +47,9 @@ img {
   background: linear-gradient(135deg, rgba(0, 102, 204, 0.95) 0%, rgba(0, 82, 163, 0.95) 40%, rgba(0, 61, 122, 0.95) 100%);
   backdrop-filter: blur(10px);
   color: #f0f0f0;
-  padding: 1rem 0;
-  position: relative;
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
   z-index: 100;
   box-shadow: 0 8px 32px rgba(0, 255, 128, 0.15);
   border-bottom: 2px solid rgba(0, 255, 128, 0.3);
@@ -925,7 +926,12 @@ img {
 .game-info {
   padding: 1rem;
 }
+.imog{
+  height: 15px;
+  width: 15px;
+  overflow: hidden;
 
+}
 .game-title {
   font-size: 1.1rem;
   font-weight: bold;

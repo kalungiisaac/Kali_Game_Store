@@ -103,10 +103,10 @@ class Wishlist {
             const gameId = parseInt(detailBtn.dataset.gameId);
             if (this.isInWishlist(gameId)) {
                 detailBtn.classList.add('active');
-                detailBtn.innerHTML = '<span>❤️</span> Added to Wishlist';
+                detailBtn.innerHTML = '<span>❤</span> Added to Wishlist';
             } else {
                 detailBtn.classList.remove('active');
-                detailBtn.innerHTML = '<span>❤️</span> Add to Wishlist';
+                detailBtn.innerHTML = '<span>❤</span> Add to Wishlist';
             }
         }
     }

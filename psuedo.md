@@ -45,7 +45,7 @@ A modern web application for browsing, searching, filtering, and managing video 
 ```pseudocode
 CLASS Api:
     PROPERTIES:
-        - API_KEY: 'd2663c76d7194a21821130c805530d61'
+        - API_KEY: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
         - BASE_URL: 'https://api.rawg.io/api'
         - RATE_LIMIT: Track max 40 requests per minute
         - YOUTUBE_API_KEY: For trailer searches

@@ -40,7 +40,7 @@ window.openTrailer = async function(gameId, gameName) {
             const searchUrl = trailer?.searchUrl || `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' official game trailer')}`;
             container.innerHTML = `
                 <div class="trailer-fallback">
-                    <p>😕 Could not find an embeddable trailer.</p>
+                    <p><span class = "imog">🚫</span>Could not find an embeddable trailer.</p>
                     <a href="${searchUrl}" target="_blank" class="trailer-yt-btn">▶ Search on YouTube</a>
                 </div>
             `;
@@ -51,7 +51,7 @@ window.openTrailer = async function(gameId, gameName) {
         const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + ' official game trailer')}`;
         container.innerHTML = `
             <div class="trailer-fallback">
-                <p>😕 Something went wrong loading the trailer.</p>
+                <p>🚫Something went wrong loading the trailer.</p>
                 <a href="${searchUrl}" target="_blank" class="trailer-yt-btn">▶ Search on YouTube</a>
             </div>
         `;

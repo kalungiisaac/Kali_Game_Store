@@ -5,24 +5,24 @@ class register {
     this.validationTimeouts = {};
   }
 
-  /**
-   * Load registered users from localStorage
-   */
+  
+   // Load registered users from localStorage
+   
   loadUsers() {
     const users = localStorage.getItem('gameLibrary_users');
     return users ? JSON.parse(users) : {};
   }
 
-  /**
-   * Load currently logged-in user from localStorage
-   */
+  
+   //Load currently logged-in user from localStorage
+   
   loadCurrentUser() {
     return localStorage.getItem('gameLibrary_currentUser');
   }
 
-  /**
-   * Save users to localStorage
-   */
+  
+   //Save users to localStorage
+   
   saveUsers() {
     localStorage.setItem('gameLibrary_users', JSON.stringify(this.registeredUsers));
   }
@@ -156,11 +156,11 @@ class register {
     this.saveUsers();
     this.saveCurrentUser(username);
     return { success: true, message: 'Registration successful!' };
-  }
 
-  /**
-   * Login user
-   */
+  }
+  
+  //login user
+   
   login(username, password) {
     if (!username.trim() || !password.trim()) {
       return { success: false, message: 'Username and password are required' };
@@ -183,9 +183,9 @@ class register {
     return { success: true, message: 'Login successful!' };
   }
 
-  /**
-   * Logout user
-   */
+  
+   // Logout user
+   
   logout() {
     localStorage.removeItem('gameLibrary_currentUser');
     this.currentUser = null;
@@ -320,9 +320,8 @@ class register {
     return strength.score >= 3;
   }
 
-  /**
-   * Render registration modal with enhanced validation UI
-   */
+  // Render registration modal with enhanced validation UI
+   
   renderModal() {
     const modal = document.getElementById('register-modal');
     if (!modal) return;
@@ -548,9 +547,9 @@ class register {
     });
   }
 
-  /**
-   * Switch between register and login tabs
-   */
+  
+   // Switch between register and login tabs
+   
   switchTab(tab, modal) {
     const forms = modal.querySelectorAll('.register-form, .login-form');
     const btns = modal.querySelectorAll('.tab-btn');
@@ -622,7 +621,7 @@ class register {
     } else {
       // Show user account icon - YOUR EXACT ORIGINAL HTML
       headerIcons.innerHTML = `
-        <a href="#" class="icon-link user-account-link" title="Sign In / User Account">
+        <a href="#" class="icon-link user-account-link" title="Sign In">
           <svg class="user-account-icon" width="32" height="32" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
             <!-- Outer circle -->
             <circle cx="128" cy="128" r="110" fill="none" stroke="currentColor" stroke-width="16"/>
@@ -649,9 +648,8 @@ class register {
     }
   }
 
-  /**
-   * Initialize register modal
-   */
+  //Initialize register modal
+   
   init() {
     this.renderModal();
     this.updateHeaderUser();
